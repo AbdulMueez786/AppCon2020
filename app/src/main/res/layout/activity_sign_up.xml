@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/Signup_LinearLayout"
+    android:weightSum="7"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/Signup_image"
+        android:layout_weight="1"
+        >
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cheers for Peers"
+        android:layout_below="@+id/profilePic"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:id="@+id/Signup_CheerForPeerLabel"
+        android:layout_weight="1"
+        >
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="Enter Email "
+        android:padding="10px"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/rectangledesign"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:id="@+id/Signup_email">
+</EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="Enter Password "
+        android:padding="10px"
+        android:inputType="numberPassword"
+        android:background="@drawable/rectangledesign"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:id="@+id/Signup_Password">
+    </EditText>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="Enter Name "
+        android:padding="10px"
+        android:inputType="text"
+        android:background="@drawable/rectangledesign"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:id="@+id/Signup_Name">
+    </EditText>
+
+    <Button
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rectangle"
+        android:text="Sign Up"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:id="@+id/Signup_button"
+        >
+    </Button>
+</LinearLayout>

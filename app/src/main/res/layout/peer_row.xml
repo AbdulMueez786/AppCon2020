@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="1dp"
+    android:weightSum="5"
+    android:background="#fff"
+    android:id="@+id/l1"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="0dp"
+        android:id="@+id/profilePic"
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        >
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3.7"
+        android:weightSum="3"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/name"
+            android:layout_weight="1.8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Muhammad Abdullah"
+            android:textSize="25dp"
+            >
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            >
+            <TextView
+                android:id="@+id/cheerscount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.4"
+                android:text="500 Cheers"
+                android:textSize="15dp"
+                >
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/medal"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+
+
+                >
+            </ImageView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+        android:background="#A9A9A9"
+            />
+    </LinearLayout>
+</LinearLayout>

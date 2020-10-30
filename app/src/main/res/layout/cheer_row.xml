@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="1dp"
+    android:weightSum="5"
+    android:background="#fff"
+    >
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_weight="2"
+    android:weightSum="2"
+
+    >
+    <TextView
+        android:id="@+id/cheer_title"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Abdul Mueez cheers abdullah">
+    </TextView>
+    <TextView
+        android:id="@+id/cheer_desc"
+        android:layout_weight="1"
+        android:padding="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="He have helped me in My Cmpany project">
+    </TextView>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:weightSum="3"
+        android:orientation="vertical"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_margin="20dp"
+            >
+            <TextView
+                android:id="@+id/cheers_point"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.4"
+                android:text="500 Cheers"
+                android:textSize="15dp"
+                >
+
+            </TextView>
+            <ImageView
+                android:id="@+id/cheer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                >
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

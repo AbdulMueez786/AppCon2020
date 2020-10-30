@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="User">
+
+        <menu>
+            <item android:title="Peers"
+                android:icon="@drawable/peers"/>
+            <item android:title="Login"
+                android:icon="@drawable/peers"/>
+            <item android:title="Login"
+                android:icon="@drawable/peers"/>
+            <item android:title="Login"
+                android:icon="@drawable/peers"/>
+        </menu>
+    </item>
+
+    <item android:title="User">
+        <menu>
+            <item android:title="Peers"
+                android:icon="@drawable/peers"/>
+            <item android:title="Login"
+                android:icon="@drawable/peers"/>
+            <item android:title="Login"
+                android:icon="@drawable/peers"/>
+            <item android:title="Login"
+                android:icon="@drawable/peers"/>
+        </menu>
+    </item>
+
+</menu>

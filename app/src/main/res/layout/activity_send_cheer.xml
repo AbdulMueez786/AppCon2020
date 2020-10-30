@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:weightSum="6"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/header"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Cheer"
+            android:textSize="30dp"
+            android:textColor="#FFF"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="40dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0">
+        <EditText
+            android:id="@+id/cheer_desc"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/messagebox"
+            android:layout_margin="30dp"
+            android:hint="Write your cheer detail..."
+            android:gravity="top"
+            android:padding="20dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/sendreact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cheers!"
+            android:gravity="center"
+            android:layout_gravity="top"
+            android:backgroundTint="#26B15D"
+            android:textColor="#FFF"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:id="@+id/reactButton"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:layout_gravity="top"
+            android:background="@drawable/reactback"
+            android:textColor="#FFF"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap and hold icon to change cheer!"
+        android:layout_gravity="center"
+        />
+</LinearLayout>
