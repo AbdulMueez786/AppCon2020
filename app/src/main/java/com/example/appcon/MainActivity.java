@@ -13,13 +13,21 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static  int SPLASH_SCREEN=3000;
+    private static  int SPLASH_SCREEN=5000;
 
-    Animation topAnim,bottomAnim;
-    ImageView image;
-    TextView logo;
+    private Animation topAnim,bottomAnim;
+    private ImageView image;
+    private TextView logo;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         image=findViewById(R.id.imageView);
-        logo=findViewById(R.id.textView);
+        //logo=findViewById(R.id.textView);
         //toolbar.setVisibility(View.GONE);
         image.setAnimation(topAnim);
-        logo.setAnimation(bottomAnim);
-
+        //logo.setAnimation(topAnim);
+        //getSupportActionBar().hide();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -49,6 +57,26 @@ public class MainActivity extends AppCompatActivity {
             }
         },SPLASH_SCREEN);
 
-
     }
+    /*private void status(String status){
+        if (FirebaseAuth.getInstance().getCurrentUser()!=null){
+
+
+        databaseReference= FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance()
+           .getCurrentUser().getUid());
+        HashMap<String,Object> hashMap=new HashMap<>();
+        hashMap.put("status",status);
+        databaseReference.updateChildren(hashMap); }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
+    }
+    */
 }

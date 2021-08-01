@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetContainer"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/bottom_sheet_background"
+    android:layout_height="wrap_content">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="15dp"
+    android:text="User Profile"
+    android:textColor="#212121"
+    android:textSize="18sp"
+    android:textStyle="bold"
+     />
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#ECECEC"
+    android:layout_marginBottom="10dp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    >
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/peer_pic"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user"
+        app:riv_corner_radius="10dp"
+        android:layout_width="100dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        >
+        <TextView
+            android:id="@+id/peer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Andul Mueez"
+            android:textColor="#212121"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            >
+        </TextView>
+       <TextView
+           android:id="@+id/peer_phone_no"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Phone No"
+             android:textColor="#757575"
+           >
+        </TextView>
+        <TextView
+            android:id="@+id/peer_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textColor="#757575"
+            >
+        </TextView>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+    <TextView
+        android:id="@+id/peer_bio"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="I am a Software developer in tech company .I have working in this comapny for 10 years.I have a manager post in a company. I am basically from Vehari near Multan.But i live in islamabad for 5 years.  "
+        >
+    </TextView>
+    <Button
+        android:id="@+id/button_send_cheer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bottom_drawer_button_background"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Send Cheer"
+        android:textColor="#FFFF"
+        android:textSize="15sp"
+        />
+</LinearLayout>

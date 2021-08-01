@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Report">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:background="#FFF"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                android:elevation="4dp"
+                >
+            </androidx.appcompat.widget.Toolbar>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/Report_admin_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin Report"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/notification_profile"
+                />
+
+            <ImageView
+                android:id="@+id/notification_setting"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_outline_settings_24"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"/>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/Report_total_cheer_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#000"
+            android:text="Cheers Count: 100"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/cheer1"/>
+            <TextView
+                android:id="@+id/Report_cheer1_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 cheers"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/cheer2"/>
+            <TextView
+                android:id="@+id/Report_cheer2_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 cheers"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/cheer3"/>
+            <TextView
+                android:id="@+id/Report_cheer3_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 cheers"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/cheer4"/>
+            <TextView
+                android:id="@+id/Report_cheer4_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 cheers"
+                android:textColor="#000"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

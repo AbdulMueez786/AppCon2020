@@ -53,7 +53,7 @@
             android:text="Cheers!"
             android:gravity="center"
             android:layout_gravity="top"
-            android:backgroundTint="#26B15D"
+            android:backgroundTint="#1DA1F2"
             android:textColor="#FFF"
             android:layout_weight="1"
             />

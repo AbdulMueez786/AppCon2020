@@ -1,47 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="#ffff"
-    android:orientation="vertical"
-    android:weightSum="5"
     >
 
+    <ImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_baseline_supervisor_account_24"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        />
     <TextView
-        android:layout_weight="1"
-        android:layout_height="1dp"
-        android:layout_width="1dp" />
-
-     <ImageView
-         android:id="@+id/imageView"
-        android:src="@drawable/logo"
-         android:layout_gravity="center_horizontal"
-         android:layout_width="match_parent"
-         android:layout_height="100dp"
-          android:layout_weight="1"
-         />
-    <TextView
-        android:layout_weight="1"
-        android:layout_height="1dp"
-        android:layout_width="1dp" />
-    <TextView
-        android:layout_weight="1"
-        android:layout_height="1dp"
-        android:layout_width="1dp" />
-    <TextView
+        android:layout_below="@+id/imageView"
         android:id="@+id/textView"
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
         android:text="Cheer for peer"
-        android:textColor="@color/heading_color"
+        android:textColor="#1DA1F2"
         android:textStyle="bold"
-        android:textSize="40dp"
+        android:textSize="15dp"
         android:gravity="center"
-        android:layout_margin="5dp"
         />
-</LinearLayout>
+</RelativeLayout>

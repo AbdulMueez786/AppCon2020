@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorAccent">#2BB260</item>
-        <item name="colorPrimary">#2BB260</item>
-      
+        <item name="colorAccent">#424242</item>
+        <item name="colorPrimary">#1DA1F2</item>
+        <item name="colorPrimaryDark">#424242</item>
     </style>
 </resources>

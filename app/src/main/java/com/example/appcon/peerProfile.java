@@ -14,10 +14,10 @@ import com.google.firebase.database.DatabaseReference;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class peerProfile extends AppCompatActivity {
-TextView peer_name,peer_cheerPoints;
-ImageView peer_medal;
-Button Send_Cheer;
-CircleImageView peer_profile;
+private TextView peer_name,peer_cheerPoints;
+private ImageView peer_medal;
+private Button Send_Cheer;
+private CircleImageView peer_profile;
 private DatabaseReference ref;
 
     @Override
@@ -50,7 +50,5 @@ private DatabaseReference ref;
                 startActivity(intent);
             }
         });
-
-
     }
 }

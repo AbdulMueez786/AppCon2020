@@ -6,46 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".Home"
     android:id="@+id/Home_drawer"
-
+    android:background="#F5F8FA"
     >
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="3"
     >
-
-
+    <!--
     <androidx.viewpager.widget.ViewPager
-        android:layout_weight="1.7"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/viewpager">
     </androidx.viewpager.widget.ViewPager>
+
+
     <com.google.android.material.tabs.TabLayout
-        android:layout_weight="0.1"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="80dp"
         app:tabGravity="fill"
-        app:tabMode="fixed"
         android:id="@+id/tablayout"
-        app:tabTextColor="#fff"
-        app:tabIndicatorColor="#4CAF50"
         app:tabIndicatorFullWidth="false"
-        android:background="@drawable/lowerround"
+        app:tabIndicator="@color/white"
+        app:tabIconTint="#424242"
+        app:tabTextColor="#424242"
+        android:background="@drawable/t"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical"
         >
-
     </com.google.android.material.tabs.TabLayout>
+    -->
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_nav"
+            />
+
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+    </RelativeLayout>
 </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/Home_navigation"
         app:menu="@menu/main"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
+        android:background="#F5F8FA"
         />
-
 </androidx.drawerlayout.widget.DrawerLayout>

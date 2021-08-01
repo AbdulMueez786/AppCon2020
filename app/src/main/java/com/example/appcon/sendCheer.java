@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.example.appcon.model.cheer_notification;
+import com.example.appcon.model.post;
+import com.example.appcon.model.user;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +25,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.onesignal.OneSignal;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.HashMap;
 
 public class sendCheer extends AppCompatActivity {
@@ -30,7 +38,7 @@ public class sendCheer extends AppCompatActivity {
 
     private ImageView sendCheer_button;
     private Button sendCheer_sendButton;
-    private String sendCheer_cheerType;
+    private String sendCheer_cheerType="3";
     private EditText cheer_desc;
 
 
@@ -41,23 +49,16 @@ public class sendCheer extends AppCompatActivity {
     //Firebase
     private DatabaseReference sendCheer_postsRef;
     private DatabaseReference sendCheer_userRef;
-    private FirebaseUser sendCheer_authUser;
+    private FirebaseUser current_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_cheer);
-
         sendCheer_button = findViewById(R.id.reactButton);
         sendCheer_button.setImageResource(R.drawable.cheer4);
         sendCheer_sendButton =findViewById(R.id.sendreact);
-        sendCheer_sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                create_post();
-                Toast.makeText(sendCheer.this, "cheer sent", Toast.LENGTH_SHORT).show();
-            }
-        });
+        current_user = FirebaseAuth.getInstance().getCurrentUser();
         cheer_desc=findViewById(R.id.cheer_desc);
         cheer_desc.setHint("Say some thing nice to "+getIntent().getStringExtra("name")+"...");
         receiver_id =getIntent().getStringExtra("id");//id
@@ -72,7 +73,14 @@ public class sendCheer extends AppCompatActivity {
         sendCheer_postsRef = FirebaseDatabase.getInstance().getReference("Posts");
 
         sendCheer_userRef = FirebaseDatabase.getInstance().getReference("users");
-
+        sendCheer_sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                create_post();
+                send_notification();
+                Toast.makeText(sendCheer.this, "cheer sent", Toast.LENGTH_SHORT).show();
+            }
+        });
         sendCheer_button.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -190,15 +198,66 @@ public class sendCheer extends AppCompatActivity {
             }
         });
     }
+
+    void send_notification(){
+       sendCheer_userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               String appId=dataSnapshot.child(receiver_id).child("app_id").getValue(String.class);
+               final String sender_name=dataSnapshot.child(current_user.getUid()).child("name").getValue(String.class);
+               final String sender_profile=dataSnapshot.child(current_user.getUid()).child("user_profile").getValue(String.class);
+
+               try {
+                   OneSignal.postNotification(new JSONObject("{'contents':{'en':'" +
+
+                                   sender_name+" have cheered you " +
+                                   "'},'headings':{'en':'"+
+                                   "Cheer For Peer"+
+                                   "'},'include_player_ids': ['" +
+                                   appId+
+                                   "']}"),
+                           new OneSignal.PostNotificationResponseHandler() {
+                               @Override
+                               public void onSuccess(JSONObject response) {
+                                   android.text.format.DateFormat df = new android.text.format.DateFormat();
+                                   CharSequence s= df.format("yyyy-MM-dd hh:mm:ss a", new Date());
+                                   FirebaseDatabase.getInstance().getReference("Cheer_Notification")
+                                           .push().setValue(new cheer_notification(sender_name+" have cheered you ",receiver_id,
+                                           FirebaseAuth.getInstance().getCurrentUser().getUid(),s.toString(),sendCheer_cheerType,sender_profile,"unread" ));
+
+                               }
+                               @Override
+                               public void onFailure(JSONObject response) {
+
+                               }
+                           });
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+
+    }
+
     void create_post(){
-        sendCheer_authUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
         this.sendCheer_userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                user sender=dataSnapshot.child(sendCheer_authUser.getUid()).getValue(user.class);
+
+
+                user sender=dataSnapshot.child(current_user.getUid()).getValue(user.class);
                 user reciever=dataSnapshot.child(receiver_id).getValue(user.class);
+
                 points=Integer.parseInt(reciever.getCheerpoints());
+
 
                 if(sendCheer_cheerType=="0"){
                     points=points+30;
@@ -213,13 +272,93 @@ public class sendCheer extends AppCompatActivity {
                     points=points+110;
                 }
 
-                post p=new post(sender.getName()+" Cheers "+reciever.getName(), sendCheer_authUser.getUid(),receiver_id,sendCheer_cheerType,cheer_desc.getText().toString());
+
+                android.text.format.DateFormat df = new android.text.format.DateFormat();
+                CharSequence s= df.format("yyyy-MM-dd hh:mm:ss a", new Date());
+                post p=new post(sender.getName()+" Cheers "+reciever.getName(), current_user.getUid(),
+                        receiver_id,sendCheer_cheerType,cheer_desc.getText().toString(),s.toString());
 
                 String post_id= sendCheer_postsRef.push().getKey();
                 sendCheer_postsRef.child(post_id).setValue(p);
-                HashMap hasmap=new HashMap();
+
+                final HashMap hasmap=new HashMap();
                 hasmap.put("cheerpoints",String.valueOf(points));
+
                 sendCheer_userRef.child(receiver_id).updateChildren(hasmap);
+
+                String sent;
+
+                FirebaseDatabase.getInstance().getReference("points")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String sent=dataSnapshot.child(current_user.getUid())
+                                        .child("cheer_point_sent").getValue(String.class);
+                                String recieve=dataSnapshot.child(receiver_id)
+                                        .child("cheer_point_received").getValue(String.class);
+                                int i1=Integer.parseInt(sent);
+                                int i2=Integer.parseInt(recieve);
+                                i1=i1+1;
+                                i2=i2+1;
+                                HashMap h1=new HashMap();
+                                h1.put("cheer_point_sent",String.valueOf(i1));
+                                HashMap h2=new HashMap();
+                                h2.put("cheer_point_received",String.valueOf(i2));
+                                FirebaseDatabase.getInstance().getReference("points")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(h1);
+                                FirebaseDatabase.getInstance().getReference("points")
+                                        .child(receiver_id).updateChildren(h2);
+                                FirebaseDatabase.getInstance().getReference("cheer_report")
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                                if(sendCheer_cheerType=="0"){
+                                                    HashMap h=new HashMap();
+                                                    h.put("cheer1",String.valueOf(Integer.parseInt(dataSnapshot.child("cheer1").getValue(String.class))+1));
+                                                    FirebaseDatabase.getInstance().getReference("cheer_report")
+                                                        .updateChildren(h);
+                                                }
+                                                else if(sendCheer_cheerType=="1"){
+                                                    HashMap h=new HashMap();
+                                                    h.put("cheer2", String.valueOf(Integer.parseInt(dataSnapshot.child("cheer2").getValue(String.class))+1));
+                                                    FirebaseDatabase.getInstance().getReference("cheer_report")
+                                                            .updateChildren(h);
+                                                }
+                                                else if(sendCheer_cheerType=="2"){
+                                                    HashMap h=new HashMap();
+                                                    h.put("cheer3",  String.valueOf(Integer.parseInt(dataSnapshot.child("cheer3").getValue(String.class))+1));
+                                                    FirebaseDatabase.getInstance().getReference("cheer_report")
+                                                            .updateChildren(h);
+                                                }
+                                                else if(sendCheer_cheerType=="3"){
+                                                    HashMap h=new HashMap();
+                                                    h.put("cheer4",  String.valueOf(Integer.parseInt(dataSnapshot.child("cheer4").getValue(String.class))+1));
+                                                    FirebaseDatabase.getInstance().getReference("cheer_report")
+                                                            .updateChildren(h);
+                                                }
+
+                                                HashMap hmap=new HashMap();
+                                                hmap.put("total_cheers",  String.valueOf(Integer.parseInt(dataSnapshot.child("total_cheers").getValue(String.class))+1));
+                                                FirebaseDatabase.getInstance().getReference("cheer_report")
+                                                        .updateChildren(hmap);
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
                 finish();
             }
             @Override
@@ -227,10 +366,34 @@ public class sendCheer extends AppCompatActivity {
                 Toast.makeText(sendCheer.this, "Try again something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+/*
+    private void status(String status) {
 
-
-
-
+        if (current_user!=null){
+            DatabaseReference databaseReference;
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(current_user.getUid());
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("status", status);
+            databaseReference.updateChildren(hashMap);
+        }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        status("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        status("offline");
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+*/
 }

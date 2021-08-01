@@ -4,73 +4,188 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="1dp"
-    android:weightSum="5"
-    android:background="#fff"
     >
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_weight="2"
-    android:weightSum="2"
-
-    >
-    <TextView
-        android:id="@+id/cheer_title"
-        android:layout_weight="1"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Abdul Mueez cheers abdullah">
-    </TextView>
-    <TextView
-        android:id="@+id/cheer_desc"
-        android:layout_weight="1"
-        android:padding="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="He have helped me in My Cmpany project">
-    </TextView>
-</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:weightSum="3"
-        android:orientation="vertical"
-
-        >
+        android:elevation="10dp"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_margin="20dp"
+            android:padding="10dp"
             >
-            <TextView
-                android:id="@+id/cheers_point"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.4"
-                android:text="500 Cheers"
-                android:textSize="15dp"
-                >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/homescreen_profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/gujjar"/>
 
-            </TextView>
-            <ImageView
-                android:id="@+id/cheer"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 >
-            </ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/homescreen_sender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/arrow_icon"
+                        android:layout_gravity="center"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        />
+                    <TextView
+                        android:id="@+id/homescreen_receiver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/homescreen_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14dp"
+                        android:textColor="#535252"
+                        android:text="1h"/>
+                    <TextView
+                        android:id="@+id/homescreen_dot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="25dp"
+                        android:textColor="#535252"
+                        android:text=" . "/>
+                    <ImageView
+                        android:id="@+id/cheer"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/cheer1"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/cheer_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:text="'it was a good experience to work with him at office...'"
+                />
+        </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#C3C3C3"/>
+
 </LinearLayout>
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#fff">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        >
+        <LinearLayout
+            android:background="@drawable/bg1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="30dp"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/cheer_title"
+                        android:textSize="20dp"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="haziq cheers abdullah"/>
+                    <TextView
+                        android:id="@+id/cheer_desc"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12dp"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="ahmed helped me in my work he is a good man "/>
+                </LinearLayout>
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+                   <ImageView
+                       android:id="@+id/cheer"
+                       android:layout_alignParentRight="true"
+                       android:layout_width="35dp"
+                       android:layout_height="35dp"
+                       android:src="@drawable/cheer1"/>
+               </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+
+-->
